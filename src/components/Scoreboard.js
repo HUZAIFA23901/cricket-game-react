@@ -1,4 +1,5 @@
 export default function Scoreboard({ runs, wickets, balls }) {
+  // Cricket overs are displayed as completed overs and balls (e.g., 1.3 = 9 balls).
   const overs = `${Math.floor(balls / 6)}.${balls % 6}`;
 
   return (

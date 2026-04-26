@@ -40,7 +40,7 @@ export default function App() {
   const maxWickets = 2;
   const isGameOver = wickets >= maxWickets || balls >= maxBalls;
 
-  // ✅ FIXED SLIDER LOGIC (bounded + smooth)
+  // Move the timing slider back and forth between 0 and 1.
   useEffect(() => {
     const interval = setInterval(() => {
       setSlider(prev => {
@@ -63,6 +63,7 @@ export default function App() {
     return () => clearInterval(interval);
   }, [direction]);
 
+  // Pick an outcome by matching slider position to cumulative probability.
   const getOutcome = () => {
     let cumulative = 0;
     for (let seg of stylesData[style]) {
@@ -88,6 +89,7 @@ export default function App() {
   };
 
   const resetGame = () => {
+    // Restore initial match state for a fresh round.
     setRuns(0);
     setWickets(0);
     setBalls(0);
