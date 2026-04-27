@@ -64,10 +64,12 @@ export default function Ground({ trigger, shotId }) {
     };
   }, [ballLeft, ballDuration, phase]);
 
+  const batClassName = `bat ${phase === "out" ? "bat-swing" : phase === "back" ? "bat-recover" : ""}`;
+
   return (
     <div className="ground" ref={groundRef}>
       <div className="ball" style={ballStyle} />
-      <div className="bat"></div>
+      <div className={batClassName}></div>
     </div>
   );
 }

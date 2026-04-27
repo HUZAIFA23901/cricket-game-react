@@ -1,4 +1,4 @@
-export default function Scoreboard({ runs, wickets, balls }) {
+export default function Scoreboard({ runs, wickets, balls, highestScore }) {
   // Cricket overs are displayed as completed overs and balls (e.g., 1.3 = 9 balls).
   const overs = `${Math.floor(balls / 6)}.${balls % 6}`;
 
@@ -17,6 +17,10 @@ export default function Scoreboard({ runs, wickets, balls }) {
         <article className="score-card">
           <p>Overs</p>
           <strong>{overs}</strong>
+        </article>
+        <article className="score-card">
+          <p>Highest</p>
+          <strong>{highestScore}</strong>
         </article>
       </div>
     </div>

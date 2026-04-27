@@ -27,9 +27,11 @@ const stylesData = {
 };
 
 export default function App() {
+  const initialHighScore = Number(localStorage.getItem("cricketHighestScore") || 0);
   const [runs, setRuns] = useState(0);
   const [wickets, setWickets] = useState(0);
   const [balls, setBalls] = useState(0);
+  const [highestScore, setHighestScore] = useState(initialHighScore);
   const [style, setStyle] = useState("aggressive");
   const [slider, setSlider] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -62,6 +64,13 @@ export default function App() {
 
     return () => clearInterval(interval);
   }, [direction]);
+
+  useEffect(() => {
+    if (runs > highestScore) {
+      setHighestScore(runs);
+      localStorage.setItem("cricketHighestScore", String(runs));
+    }
+  }, [runs, highestScore]);
 
   // Pick an outcome by matching slider position to cumulative probability.
   const getOutcome = () => {
@@ -121,7 +130,7 @@ export default function App() {
           </p>
         </header>
 
-        <Scoreboard runs={runs} wickets={wickets} balls={balls} />
+        <Scoreboard runs={runs} wickets={wickets} balls={balls} highestScore={highestScore} />
 
         <section className="play-zone">
           <Ground trigger={result} shotId={shotId} />

@@ -119,7 +119,7 @@
   height: 220px;
   border-radius: 20px;
   background:
-    linear-gradient(180deg, #a6d9ff 0%, #9eddff 45%, transparent 45%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 35%),
     repeating-linear-gradient(
       to right,
       #4aa454 0,
@@ -164,6 +164,16 @@
   background: linear-gradient(180deg, #98612c 0%, #75431c 100%);
   border: 1px solid rgba(65, 34, 13, 0.35);
   z-index: 2;
+  transform-origin: 85% 50%;
+  transition: transform 200ms ease-out;
+}
+
+.bat-swing {
+  animation: bat-swing 260ms ease-out both;
+}
+
+.bat-recover {
+  animation: bat-recover 220ms ease-in both;
 }
 
 .action-panel {
@@ -353,5 +363,29 @@
   .bat {
     right: 28px;
     top: 92px;
+  }
+}
+
+@keyframes bat-swing {
+  0% {
+    transform: rotate(0deg) translateX(0);
+  }
+
+  55% {
+    transform: rotate(-16deg) translateX(-2px);
+  }
+
+  100% {
+    transform: rotate(-10deg) translateX(-1px);
+  }
+}
+
+@keyframes bat-recover {
+  0% {
+    transform: rotate(-10deg) translateX(-1px);
+  }
+
+  100% {
+    transform: rotate(0deg) translateX(0);
   }
 }
